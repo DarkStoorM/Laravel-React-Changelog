@@ -1,11 +1,7 @@
 {
-  "name": "laravel/laravel",
+  "name": "darkstoorm/react-blog",
   "type": "project",
-  "description": "The Laravel Framework.",
-  "keywords": [
-    "framework",
-    "laravel"
-  ],
+  "description": "Test React Blog project",
   "license": "MIT",
   "require": {
     "php": "^8.1",
