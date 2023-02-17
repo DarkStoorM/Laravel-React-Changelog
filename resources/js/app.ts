@@ -1,3 +1,0 @@
-require("./bootstrap");
-
-// -- TypeScript includes
