@@ -7,13 +7,12 @@
           name="viewport">
     <title>{{ config('app.name') }}</title>
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.ts'])
+    @viteReactRefresh
+    @vite(['resources/sass/app.scss', 'resources/js/app.tsx'])
 </head>
 
 <body>
-    <a href="{{ route(NamedRoute::GET_INDEX) }}">Home</a>
-
-    <h1>Welcome</h1>
+    <div id="app"></div>
 </body>
 
 </html>
