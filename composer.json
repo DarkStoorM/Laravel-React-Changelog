@@ -1,7 +1,7 @@
 {
-  "name": "darkstoorm/react-blog",
+  "name": "darkstoorm/react-changelog",
   "type": "project",
-  "description": "Test React Blog project",
+  "description": "Test React Changelog project",
   "license": "MIT",
   "require": {
     "php": "^8.1",
