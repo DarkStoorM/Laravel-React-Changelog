@@ -23,3 +23,4 @@ Homestead.json
 public/build/*
 .env.testing
 .env.backup*
+_ide_*

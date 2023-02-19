@@ -15,6 +15,7 @@
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.6",
+    "barryvdh/laravel-ide-helper": "^2.13",
     "fakerphp/faker": "^1.19",
     "filp/whoops": "^2.14",
     "laravel/dusk": "^7.0",
@@ -46,6 +47,11 @@
     }
   },
   "scripts": {
+    "ide-helper": [
+      "@php artisan ide-helper:eloquent",
+      "@php artisan ide-helper:generate -W",
+      "@php artisan ide-helper:models -W"
+    ],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi"
