@@ -1,5 +1,5 @@
-import { TFormValidationError } from "../../types/TFormValidationError";
 import React from "react";
+import { TFormValidationError } from "../../types/TFormValidationError";
 
 /**
  * Maps all validation errors that came from Laravel's FormRequest validator. All errors come
