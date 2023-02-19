@@ -1,14 +1,14 @@
 import axios, { AxiosError } from "axios";
 import React, { useRef, useState } from "react";
+import { IChangelogDatabaseProps } from "resources/js/utils/interfaces/IChangelogDatabaseProps";
 import { AppRoutes } from "../../../AppRoutes";
 import { isChangelogValidationError } from "../../../utils/guards/isChangelogValidationError";
 import { getValidationErrors } from "../../../utils/helpers/forms/FormValidationError";
 import { TAxiosErrorResponse } from "../../../utils/types/TAxiosErrorResponse";
 import { TChangelogProps } from "../../../utils/types/TChangelogProps";
 import { TChangelogType } from "../../../utils/types/TChangelogType";
-import { Dropdown } from "../Dropdown";
 import { ChangelogEntry } from "../../partials/ChangelogEntry";
-import { IChangelogDatabaseProps } from "resources/js/utils/interfaces/IChangelogDatabaseProps";
+import { Dropdown } from "../Dropdown";
 
 export function ChangelogForm() {
   const [resultMessages, setResultMessages] = useState<JSX.Element>();
@@ -32,7 +32,7 @@ export function ChangelogForm() {
       .post(AppRoutes.CHANGELOG, responseBody)
       .then((response) => {
         const newEntry: IChangelogDatabaseProps = JSON.parse(response.data);
-        console.log(newEntry);
+
         setResultMessages(<div>Added new changelog entry!</div>);
         setNewEntryAdded(true);
         setDatabaseChangelog(newEntry);
