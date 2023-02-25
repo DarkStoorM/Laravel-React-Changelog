@@ -16,6 +16,7 @@
         "src:lint": "eslint --fix \"resources/js/**\""
     },
     "devDependencies": {
+        "@total-typescript/ts-reset": "^0.3.7",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",
         "@types/react-router-dom": "^5.3.3",
