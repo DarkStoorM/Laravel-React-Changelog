@@ -1,0 +1,32 @@
+.navbar {
+  margin: 0 auto;
+  width: 25rem;
+
+  & > ul {
+    border-radius: 0 0 1rem 1rem;
+    background-color: $color-base-shadow;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+
+    & > li {
+      &:not(:first-child) {
+        margin-left: 2rem;
+      }
+
+      padding: 0 1rem 0 1rem;
+      line-height: 2rem;
+      list-style-type: none;
+    }
+  }
+
+  &__link {
+    &--active {
+      border-bottom: 1px solid rgba($color: $color-base-accent, $alpha: 0.2);
+      background-color: rgba($color: $color-base-dark, $alpha: 0.1);
+    }
+  }
+}
