@@ -4,20 +4,24 @@ import { fetchRequest } from "../../../utils/helpers/FetchRequest";
 import { IChangelogDatabaseProps } from "../../../utils/interfaces/IChangelogDatabaseProps";
 import { TChangelogProps } from "../../../utils/types/TChangelogProps";
 import { TChangelogType } from "../../../utils/types/TChangelogType";
-import { ChangelogEntry } from "../../changelog/ChangelogEntry";
 import { Dropdown } from "../Dropdown";
+import { FormButton } from "../Button";
+import { MessageBag } from "../../MessageBag";
+import { TMessageBagStatus } from "resources/js/utils/types/TMessageBagStatus";
 
 export function ChangelogForm() {
-  const [resultMessages, setResultMessages] = useState<JSX.Element>();
-  const [newEntryAdded, setNewEntryAdded] = useState<boolean>(false);
-  const [databaseChangelog, setDatabaseChangelog] = useState({} as IChangelogDatabaseProps);
+  const [resultMessages, setResultMessages] = useState<string[]>([]);
+  const [messageStatus, setMessageStatus] = useState<TMessageBagStatus>();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const changelogType = useRef<HTMLSelectElement>(null);
   const changelogBody = useRef<HTMLInputElement>(null);
 
   function onSubmitHandle(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    setResultMessages(<div>Submitting</div>);
+    setIsButtonDisabled(true);
+    setResultMessages(["Submitting..."]);
+    setMessageStatus("");
 
     // Later validated by the Controller's FormRequest
     const responseBody: TChangelogProps = {
@@ -26,58 +30,59 @@ export function ChangelogForm() {
     };
 
     const fetchData = async () => {
-      const { isOk, data, error } = await fetchRequest<IChangelogDatabaseProps>(
+      const { isOk, error } = await fetchRequest<IChangelogDatabaseProps>(
         AppAPIRoutes.CHANGELOG,
         "post",
         JSON.stringify(responseBody)
       );
 
       if (!isOk) {
-        let errorMessages = <div>{error}</div>;
+        let errorMessages;
 
         // Laravel can return multiple FormRequest validation errors at once,
         // so we have to walk through them if there actually were more errors present,
         // but normally, that would not be the case. Thanks, Laravel ¯\_(ツ)_/¯
         if (Array.isArray(error)) {
-          errorMessages = (
-            <>
-              {error.map((errorMessage) => (
-                <div>{errorMessage}</div>
-              ))}
-            </>
-          );
+          errorMessages = error.map((errorMessage) => errorMessage);
+        } else {
+          errorMessages = [error as string];
         }
 
-        setResultMessages(<div>{errorMessages}</div>);
-        setNewEntryAdded(false);
+        setResultMessages(errorMessages);
+        setIsButtonDisabled(false);
+        setMessageStatus("message-bag--warning");
 
         return;
       }
 
-      setResultMessages(<div>New entry added:</div>);
-      setNewEntryAdded(true);
-      setDatabaseChangelog(data);
+      setResultMessages(["New entry added"]);
+      setMessageStatus("message-bag--success");
+      setIsButtonDisabled(false);
+
+      // Only change the Type as we might be adding multiple changelog entries of the same type
+      if (changelogBody.current) changelogBody.current.value = "";
     };
 
     fetchData();
   }
 
   return (
-    <form onSubmit={onSubmitHandle}>
-      <Dropdown
-        labeledAs={{ elementId: "changelog", text: "Type" }}
-        reference={changelogType}
-        options={["add", "fix", "delete", "update"]}
-      />
+    <>
+      <form className="flex form" onSubmit={onSubmitHandle}>
+        <Dropdown reference={changelogType} options={["add", "fix", "delete", "update"]} />
 
-      <div>
-        <label htmlFor="body">Body</label>
-        <input id="body" name="body" type="text" ref={changelogBody} />
-      </div>
+        <input
+          className="input input--full input--padded"
+          id="body"
+          name="body"
+          type="text"
+          placeholder="Changelog content"
+          ref={changelogBody}
+        />
 
-      <button>Add</button>
-      <div id="message-bag">{resultMessages}</div>
-      {newEntryAdded && <ChangelogEntry {...databaseChangelog} />}
-    </form>
+        <FormButton isButtonDisabled={isButtonDisabled} defaultState="Submit" />
+      </form>
+      {resultMessages.length > 0 && <MessageBag status={messageStatus} messages={resultMessages} />}
+    </>
   );
 }
