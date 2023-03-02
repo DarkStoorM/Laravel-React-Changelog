@@ -6,9 +6,8 @@ import { Layout } from "../components/layout/Layout";
 export function NewChangelog() {
   return (
     <Layout>
-      <Header />
       <div>
-        <h2>New Changelog record</h2>
+        <h2>New Changelog entry</h2>
         <ChangelogForm />
       </div>
     </Layout>

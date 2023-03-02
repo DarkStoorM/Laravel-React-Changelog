@@ -5,9 +5,8 @@ import { Layout } from "../components/layout/Layout";
 export function Home() {
   return (
     <Layout>
-      <Header />
       <div>
-        <h2>Home Page</h2>
+        <h2>Changelog</h2>
         <Changelog />
       </div>
     </Layout>
