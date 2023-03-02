@@ -107,7 +107,7 @@ return [
     |
     */
 
-    'write_eloquent_model_mixins' => false,
+    'write_eloquent_model_mixins' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'include_helpers' => false,
+    'include_helpers' => true,
 
     'helper_files' => [
         base_path() . '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
@@ -295,7 +295,7 @@ return [
     | e.g. `Collection<User>` instead of `Collection|User[]`.
     |
     */
-    'use_generics_annotations' => true,
+    'use_generics_annotations' => false,
 
     /*
     |--------------------------------------------------------------------------
