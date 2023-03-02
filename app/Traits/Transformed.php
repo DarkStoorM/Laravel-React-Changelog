@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Transformers\ChangelogTransformer;
+use Illuminate\Support\Collection;
 use League\Fractal\Serializer\ArraySerializer;
 
 trait Transformed
@@ -11,7 +11,15 @@ trait Transformed
     {
         return fractal(serializer: new ArraySerializer())
             ->item($this)
-            ->transformWith((new ChangelogTransformer()))
+            ->transformWith($this->getTransformer())
+            ->toJson();
+    }
+
+    public static function collectTransformed(Collection $modelsCollection)
+    {
+        return fractal()
+            ->collection($modelsCollection)
+            ->transformWith(self::class::$transformer)
             ->toJson();
     }
 }
