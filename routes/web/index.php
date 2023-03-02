@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ChangeController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/{path?}', 'app');
 
-Route::post('/create', [IndexController::class, 'store']);
+Route::post('/create', [ChangeController::class, 'store']);
