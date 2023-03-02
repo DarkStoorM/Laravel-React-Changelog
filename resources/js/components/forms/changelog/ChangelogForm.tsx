@@ -1,13 +1,10 @@
-import axios, { AxiosError } from "axios";
 import React, { useRef, useState } from "react";
-import { IChangelogDatabaseProps } from "resources/js/utils/interfaces/IChangelogDatabaseProps";
-import { AppRoutes } from "../../../AppRoutes";
-import { isChangelogValidationError } from "../../../utils/guards/isChangelogValidationError";
-import { getValidationErrors } from "../../../utils/helpers/forms/FormValidationError";
-import { TAxiosErrorResponse } from "../../../utils/types/TAxiosErrorResponse";
+import { AppAPIRoutes } from "../../../AppRoutes";
+import { fetchRequest } from "../../../utils/helpers/FetchRequest";
+import { IChangelogDatabaseProps } from "../../../utils/interfaces/IChangelogDatabaseProps";
 import { TChangelogProps } from "../../../utils/types/TChangelogProps";
 import { TChangelogType } from "../../../utils/types/TChangelogType";
-import { ChangelogEntry } from "../../partials/ChangelogEntry";
+import { ChangelogEntry } from "../../changelog/ChangelogEntry";
 import { Dropdown } from "../Dropdown";
 
 export function ChangelogForm() {
@@ -28,31 +25,41 @@ export function ChangelogForm() {
       type: changelogType.current?.value as TChangelogType,
     };
 
-    axios
-      .post(AppRoutes.CHANGELOG, responseBody)
-      .then((response) => {
-        const newEntry: IChangelogDatabaseProps = JSON.parse(response.data);
+    const fetchData = async () => {
+      const { isOk, data, error } = await fetchRequest<IChangelogDatabaseProps>(
+        AppAPIRoutes.CHANGELOG,
+        "post",
+        JSON.stringify(responseBody)
+      );
 
-        setResultMessages(<div>Added new changelog entry!</div>);
-        setNewEntryAdded(true);
-        setDatabaseChangelog(newEntry);
-      })
-      .catch((reason: AxiosError) => {
-        // We know the type of this error, since it comes from custom FormRequest,
-        // but we have to take other internal errors into account
-        let errorMessages = <></>;
+      if (!isOk) {
+        let errorMessages = <div>{error}</div>;
 
-        if (isChangelogValidationError(reason.response?.data)) {
-          const messageBag = reason.response?.data as TAxiosErrorResponse<TChangelogProps>;
-
-          errorMessages = getValidationErrors(messageBag.errors);
-        } else {
-          errorMessages = <div>Internal server error :(</div>;
+        // Laravel can return multiple FormRequest validation errors at once,
+        // so we have to walk through them if there actually were more errors present,
+        // but normally, that would not be the case. Thanks, Laravel ¯\_(ツ)_/¯
+        if (Array.isArray(error)) {
+          errorMessages = (
+            <>
+              {error.map((errorMessage) => (
+                <div>{errorMessage}</div>
+              ))}
+            </>
+          );
         }
 
-        setResultMessages(errorMessages);
+        setResultMessages(<div>{errorMessages}</div>);
         setNewEntryAdded(false);
-      });
+
+        return;
+      }
+
+      setResultMessages(<div>New entry added:</div>);
+      setNewEntryAdded(true);
+      setDatabaseChangelog(data);
+    };
+
+    fetchData();
   }
 
   return (
@@ -70,7 +77,7 @@ export function ChangelogForm() {
 
       <button>Add</button>
       <div id="message-bag">{resultMessages}</div>
-      {newEntryAdded ? <ChangelogEntry {...databaseChangelog} /> : ""}
+      {newEntryAdded && <ChangelogEntry {...databaseChangelog} />}
     </form>
   );
 }
