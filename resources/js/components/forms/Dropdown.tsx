@@ -14,7 +14,7 @@ export function Dropdown(props: IDropdownProps) {
   return (
     <>
       {labeledAs && <label htmlFor={labeledAs.elementId}>{labeledAs.text}</label>}
-      <select ref={reference}>
+      <select ref={reference} className="input">
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
