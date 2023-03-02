@@ -11,7 +11,7 @@ export function Header() {
     },
     {
       name: "Add new change",
-      url: `/${AppRoutes.CHANGELOG}`,
+      url: `${AppRoutes.CHANGELOG}`,
     },
   ];
 
@@ -28,7 +28,7 @@ export function Header() {
       <div>
         <ul>
           {pageLinks.map((page, key) => (
-            <li key={key} className={`${location.pathname === page.url ? "active" : ""}`}>
+            <li key={key} className={`${location.pathname === page.url && "active"}`}>
               <Link to={page.url}>{page.name}</Link>
             </li>
           ))}
