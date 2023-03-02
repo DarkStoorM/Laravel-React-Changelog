@@ -18,9 +18,12 @@
 
 // Import Layout files
 @import 'bem/links';
+@import 'bem/layout/input';
+@import 'bem/layout/form';
 @import 'bem/layout/main';
 
 @import 'bem/layout/app';
 @import 'bem/layout/container';
 @import 'bem/layout/navbar';
 @import 'bem/layout/header';
+@import 'bem/layout/message-bag';
