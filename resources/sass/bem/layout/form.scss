@@ -1,0 +1,9 @@
+.form {
+  width: 100%;
+
+  & > * {
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+}

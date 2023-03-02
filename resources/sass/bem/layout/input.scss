@@ -1,0 +1,27 @@
+.input {
+  background-color: rgba($color: $color-base-accent, $alpha: 0.75);
+  border: 1px solid $color-base-accent;
+  border-radius: 0.25rem;
+  color: white;
+  font-weight: bold;
+  height: 2.5rem;
+  outline: none;
+  text-shadow: rgba($color: $color-base-shadow, $alpha: 1) 2px 2px 5px;
+  width: 8rem;
+
+  &:hover:not(:only-of-type(option)) {
+    background-color: rgba($color: $color-base-highlight, $alpha: 0.65);
+  }
+
+  &--padded {
+    padding-left: 0.75rem;
+  }
+
+  &--small {
+    width: 5rem;
+  }
+
+  &--full {
+    width: 100%;
+  }
+}
