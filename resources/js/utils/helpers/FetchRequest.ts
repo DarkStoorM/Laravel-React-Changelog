@@ -1,6 +1,6 @@
 import { token } from "../../app";
-import { IParsedJsonResponse } from "../interfaces/IParsedJsonResponse";
 import { IApiResponse } from "../interfaces/IApiResponse";
+import { IParsedJsonResponse } from "../interfaces/IParsedJsonResponse";
 import { IValidationError } from "../interfaces/IValidationError";
 import { TRequestMethod } from "../types/TRequestMethod";
 
