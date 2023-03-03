@@ -1,0 +1,17 @@
+.icon {
+  &--add {
+    background: url('/icons/add.png') no-repeat 50% 50%;
+  }
+
+  &--delete {
+    background: url('/icons/delete.png') no-repeat 50% 50%;
+  }
+
+  &--fix {
+    background: url('/icons/fix.png') no-repeat 50% 50%;
+  }
+
+  &--update {
+    background: url('/icons/update.png') no-repeat 50% 50%;
+  }
+}
