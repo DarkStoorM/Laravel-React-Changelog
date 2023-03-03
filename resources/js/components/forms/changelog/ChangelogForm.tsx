@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 import { AppAPIRoutes } from "../../../AppRoutes";
+import { EMessageBagStatus } from "../../../utils/enums/EMessageBagStatus";
 import { fetchRequest } from "../../../utils/helpers/FetchRequest";
 import { IChangelogDatabaseProps } from "../../../utils/interfaces/IChangelogDatabaseProps";
 import { TChangelogProps } from "../../../utils/types/TChangelogProps";
 import { TChangelogType } from "../../../utils/types/TChangelogType";
-import { Dropdown } from "../Dropdown";
+import { MessageBag } from "../../partials/MessageBag";
 import { FormButton } from "../Button";
-import { MessageBag } from "../../MessageBag";
-import { EMessageBagStatus } from "../../../utils/enums/EMessageBagStatus";
+import { Dropdown } from "../Dropdown";
 
 export function ChangelogForm() {
   const [resultMessages, setResultMessages] = useState<string[]>([]);
