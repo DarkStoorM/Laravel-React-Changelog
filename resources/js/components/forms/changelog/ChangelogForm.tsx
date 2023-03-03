@@ -7,21 +7,29 @@ import { TChangelogType } from "../../../utils/types/TChangelogType";
 import { Dropdown } from "../Dropdown";
 import { FormButton } from "../Button";
 import { MessageBag } from "../../MessageBag";
-import { TMessageBagStatus } from "resources/js/utils/types/TMessageBagStatus";
+import { EMessageBagStatus } from "../../../utils/enums/EMessageBagStatus";
 
 export function ChangelogForm() {
   const [resultMessages, setResultMessages] = useState<string[]>([]);
-  const [messageStatus, setMessageStatus] = useState<TMessageBagStatus>();
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [messageStatus, setMessageStatus] = useState<EMessageBagStatus>(EMessageBagStatus.EMPTY);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const changelogType = useRef<HTMLSelectElement>(null);
   const changelogBody = useRef<HTMLInputElement>(null);
+
+  function updateStates(
+    messages: string[],
+    buttonState: boolean,
+    responseMessageStatus: EMessageBagStatus
+  ): void {
+    setResultMessages(messages);
+    setIsButtonDisabled(buttonState);
+    setMessageStatus(responseMessageStatus);
+  }
 
   function onSubmitHandle(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    setIsButtonDisabled(true);
-    setResultMessages(["Submitting..."]);
-    setMessageStatus("");
+    updateStates(["Submitting..."], true, EMessageBagStatus.EMPTY);
 
     // Later validated by the Controller's FormRequest
     const responseBody: TChangelogProps = {
@@ -48,16 +56,12 @@ export function ChangelogForm() {
           errorMessages = [error as string];
         }
 
-        setResultMessages(errorMessages);
-        setIsButtonDisabled(false);
-        setMessageStatus("message-bag--warning");
+        updateStates(errorMessages, false, EMessageBagStatus.WARNING);
 
         return;
       }
 
-      setResultMessages(["New entry added"]);
-      setMessageStatus("message-bag--success");
-      setIsButtonDisabled(false);
+      updateStates(["New entry added"], false, EMessageBagStatus.SUCCESS);
 
       // Only change the Type as we might be adding multiple changelog entries of the same type
       if (changelogBody.current) changelogBody.current.value = "";
