@@ -1,8 +1,8 @@
 import React from "react";
-import { TMessageBagStatus } from "../utils/types/TMessageBagStatus";
+import { EMessageBagStatus } from "../utils/enums/EMessageBagStatus";
 
 interface mess {
-  status?: TMessageBagStatus;
+  status?: EMessageBagStatus;
   messages: string[];
 }
 
