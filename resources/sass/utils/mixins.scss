@@ -22,18 +22,9 @@
     margin: 0px auto;
 }
 
-@mixin round-corners($size: 5px) {
-    border-radius: $size;
-}
-
-@mixin width-quarter($offset: 0px) {
-    width: calc(50% - #{$offset});
-}
-
-@mixin width-half($offset: 0px) {
-    width: calc(50% - #{$offset});
-}
-
-@mixin width-full($offset: 0px) {
-    width: calc(100% - #{$offset});
+@mixin padded-separator() {
+    border-bottom: 1px solid $color-base-accent;
+    padding: 1rem 0 0 0;
+    margin-bottom: 1rem;
+    width: 100%;
 }

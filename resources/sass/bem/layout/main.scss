@@ -5,13 +5,34 @@ html {
 }
 
 body {
-  margin: 0;
   background-color: $main-background-color-dark;
   color: $main-font-color;
+  margin: 0;
 }
 
 *,
 :after,
 :before {
   box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: $header-font;
+  margin: 0;
+}
+
+h2 {
+  border-bottom: 1px solid #61892f;
+  padding: 0.5rem 0 1rem 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.full-width {
+  width: 100%;
 }

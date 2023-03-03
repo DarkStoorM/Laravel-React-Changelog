@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import React from "react";
 import { AppAPIRoutes } from "../../AppRoutes";
 import { fetchRequest } from "../../utils/helpers/FetchRequest";
+import { FormButton } from "../forms/Button";
 
 interface IChangelogDeleteButtonProps {
   changelogId: string;
@@ -43,9 +44,11 @@ export function ChangelogDeleteButton({
   return (
     <>
       {canBeRendered && (
-        <button onClick={() => deleteHandle(changelogId)} disabled={isDeleteButtonDisabled}>
-          {isDeleteButtonDisabled ? "Please wait..." : "Delete"}
-        </button>
+        <FormButton
+          clickEvent={() => deleteHandle(changelogId)}
+          isButtonDisabled={isDeleteButtonDisabled}
+          defaultState="Delete"
+        />
       )}
     </>
   );

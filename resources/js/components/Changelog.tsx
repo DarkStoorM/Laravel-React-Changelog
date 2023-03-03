@@ -29,10 +29,14 @@ export function Changelog() {
   }, []);
 
   function renderEntries() {
-    return changes.map((change: IChangelogDatabaseProps) => (
-      <ChangelogEntry {...change} shouldRenderDeleteButton={true} />
-    ));
+    return (
+      <div className="changelog">
+        {changes.map((change: IChangelogDatabaseProps) => (
+          <ChangelogEntry {...change} shouldRenderDeleteButton={true} />
+        ))}
+      </div>
+    );
   }
 
-  return <>{changes.length > 0 ? renderEntries() : <div>{initialState}</div>}</>;
+  return changes.length > 0 ? renderEntries() : <div>{initialState}</div>;
 }

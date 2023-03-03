@@ -6,11 +6,11 @@ export function Header() {
   const location = useLocation();
   const pageLinks = [
     {
-      name: "Home",
+      name: "Changelog",
       url: AppRoutes.ROOT,
     },
     {
-      name: "Add new change",
+      name: "New entry",
       url: `${AppRoutes.CHANGELOG}`,
     },
   ];
@@ -24,16 +24,14 @@ export function Header() {
   }, []);
 
   return (
-    <nav>
-      <div>
-        <ul>
-          {pageLinks.map((page, key) => (
-            <li key={key} className={`${location.pathname === page.url && "active"}`}>
-              <Link to={page.url}>{page.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <nav className="navbar">
+      <ul>
+        {pageLinks.map((page, key) => (
+          <li key={key} className={`${location.pathname === page.url && "navbar__link--active"}`}>
+            <Link to={page.url}>{page.name}</Link>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

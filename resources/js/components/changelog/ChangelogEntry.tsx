@@ -17,16 +17,17 @@ export function ChangelogEntry({
   return (
     <>
       {canRenderEntry && (
-        <div id={id}>
-          <div className={type}>{type}</div>
-          <div>
-            {body} - {created_at}
+        <div id={id} className="changelog__entry">
+          <div className={`changelog__entry__type icon icon--${type}`}></div>
+          <div className="changelog__entry__date">{created_at}</div>
+          <div className="changelog__entry__content">{body}</div>
+          <div className="changelog__entry__button">
+            <ChangelogDeleteButton
+              canBeRendered={shouldRenderDeleteButton}
+              changelogId={id}
+              parentActionSetter={setCanRenderEntry}
+            />
           </div>
-          <ChangelogDeleteButton
-            canBeRendered={shouldRenderDeleteButton}
-            changelogId={id}
-            parentActionSetter={setCanRenderEntry}
-          />
         </div>
       )}
     </>

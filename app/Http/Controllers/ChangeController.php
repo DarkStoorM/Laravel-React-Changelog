@@ -25,9 +25,9 @@ class ChangeController extends Controller
     {
         $payload = $request->validated();
 
-        $newChange = Change::create($payload)->transformed();
+        Change::create($payload);
 
-        return response()->json($newChange);
+        return json_response('New entry added.');
     }
 
     /**

@@ -1,0 +1,18 @@
+$header-container-height: 8rem;
+$header-padding: 2rem;
+$header-height: calc(#{$header-container-height} + #{$header-padding});
+
+.header {
+  background-color: $color-base-shadow;
+  border-bottom: solid 1px $color-base-accent;
+  height: $header-container-height;
+  font-size: x-large;
+  line-height: $header-container-height;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+
+  & > h1 {
+    margin: 0;
+  }
+}
