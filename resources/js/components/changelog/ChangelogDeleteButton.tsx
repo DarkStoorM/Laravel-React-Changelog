@@ -45,6 +45,7 @@ export function ChangelogDeleteButton({
     <>
       {canBeRendered && (
         <FormButton
+          buttonId="delete-changelog-entry"
           clickEvent={() => deleteHandle(changelogId)}
           isButtonDisabled={isDeleteButtonDisabled}
           defaultState="Delete"

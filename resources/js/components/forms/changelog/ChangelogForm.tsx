@@ -84,7 +84,11 @@ export function ChangelogForm() {
           ref={changelogBody}
         />
 
-        <FormButton isButtonDisabled={isButtonDisabled} defaultState="Submit" />
+        <FormButton
+          buttonId="submit-changelog-entry"
+          isButtonDisabled={isButtonDisabled}
+          defaultState="Submit"
+        />
       </form>
       {resultMessages.length > 0 && <MessageBag status={messageStatus} messages={resultMessages} />}
     </>

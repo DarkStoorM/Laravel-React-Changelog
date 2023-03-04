@@ -6,7 +6,7 @@ import { IMessageBagProps } from "resources/js/utils/interfaces/IMessageBagProps
  */
 export function MessageBag({ status, messages }: IMessageBagProps) {
   return (
-    <div className={`message-bag ${status}`}>
+    <div id="message-bag" className={`message-bag ${status}`}>
       {messages.map((message) => (
         <div>{message}</div>
       ))}

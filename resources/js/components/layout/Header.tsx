@@ -6,10 +6,12 @@ export function Header() {
   const location = useLocation();
   const pageLinks = [
     {
+      id: "home",
       name: "Changelog",
       url: AppRoutes.ROOT,
     },
     {
+      id: "new-entry",
       name: "New entry",
       url: `${AppRoutes.CHANGELOG}`,
     },
@@ -27,8 +29,14 @@ export function Header() {
     <nav className="navbar">
       <ul>
         {pageLinks.map((page, key) => (
-          <li key={key} className={`${location.pathname === page.url && "navbar__link--active"}`}>
-            <Link to={page.url}>{page.name}</Link>
+          // Can't use short-circuit, because it prints true/false into the class name
+          <li
+            key={key}
+            className={`${location.pathname === page.url ? "navbar__link--active" : ""}`}
+          >
+            <Link id={page.id} to={page.url}>
+              {page.name}
+            </Link>
           </li>
         ))}
       </ul>

@@ -30,7 +30,7 @@ export function Changelog() {
 
   function renderEntries() {
     return (
-      <div className="changelog">
+      <div id="changelog" className="changelog">
         {changes.map((change: IChangelogDatabaseProps) => (
           <ChangelogEntry {...change} shouldRenderDeleteButton={true} />
         ))}
@@ -38,5 +38,5 @@ export function Changelog() {
     );
   }
 
-  return changes.length > 0 ? renderEntries() : <div>{initialState}</div>;
+  return changes.length > 0 ? renderEntries() : <div id="uninitialized">{initialState}</div>;
 }

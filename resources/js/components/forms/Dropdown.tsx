@@ -12,7 +12,7 @@ export function Dropdown(props: IDropdownProps) {
 
   return (
     <>
-      <select ref={reference} className="input">
+      <select id="changelog-type" ref={reference} className="input">
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
