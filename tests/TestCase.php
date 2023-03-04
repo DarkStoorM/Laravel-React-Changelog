@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Models\User;
+use App\Models\Changelog;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -13,14 +13,13 @@ abstract class TestCase extends BaseTestCase
     use DatabaseMigrations;
     use WithFaker;
 
+    protected Changelog $changelog;
+
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
 
-        // This email will be used for new users that have to be created separately
-        // - entering a non-existing email
-        $this->fakeEmail = $this->faker->safeEmail();
+        $this->changelog = Changelog::factory()->create();
     }
 
     public function tearDown(): void

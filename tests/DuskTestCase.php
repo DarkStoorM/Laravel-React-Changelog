@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Models\User;
+use App\Models\Changelog;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
@@ -16,6 +16,8 @@ abstract class DuskTestCase extends BaseTestCase
     use CreatesApplication;
     use DatabaseMigrations;
     use WithFaker;
+
+    protected Changelog $changelog;
 
     /**
      * Prepare for Dusk test execution.
@@ -32,11 +34,8 @@ abstract class DuskTestCase extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
 
-        // This email will be used for new users that have to be created separately
-        // - entering a non-existing email
-        $this->fakeEmail = $this->faker->safeEmail();
+        $this->changelog = Changelog::factory()->create();
     }
 
     public function tearDown(): void
@@ -44,6 +43,7 @@ abstract class DuskTestCase extends BaseTestCase
         $this->browse(function (Browser $browser) {
             $browser->logout();
         });
+
         parent::tearDown();
     }
 
