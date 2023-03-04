@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangelogFormRequest;
-use App\Models\Change;
+use App\Models\Changelog;
 use Illuminate\Http\JsonResponse;
 
-class ChangeController extends Controller
+class ChangelogsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        return response()->json(Change::recent());
+        return response()->json(Changelog::recent());
     }
 
     /**
@@ -25,7 +25,7 @@ class ChangeController extends Controller
     {
         $payload = $request->validated();
 
-        Change::create($payload);
+        Changelog::create($payload);
 
         return json_response('New entry added.');
     }
@@ -39,8 +39,15 @@ class ChangeController extends Controller
      */
     public function destroy(string $id): JsonResponse
     {
-        Change::findOrFail($id)->delete();
+        Changelog::findOrFail($id)->delete();
 
         return json_response('Entry deleted successfully.');
+    }
+
+    public function show(): never
+    {
+        // This endpoint is probably not needed anyway, maybe when the project is going to
+        // be updated some day, e.g. extended to display-by-section, add detailed descriptions, etc.
+        throw new \Exception('Not yet implemented :)');
     }
 }

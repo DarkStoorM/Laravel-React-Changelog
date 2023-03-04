@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ChangeController;
+use App\Http\Controllers\ChangelogsController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['api'])->resource('changes', ChangeController::class);
+Route::middleware(['api'])->resource('changes', ChangelogsController::class);

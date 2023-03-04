@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Models\Change;
+use App\Models\Changelog;
 use League\Fractal\TransformerAbstract;
 
 class ChangelogTransformer extends TransformerAbstract
@@ -12,7 +12,7 @@ class ChangelogTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(Change $changelog)
+    public function transform(Changelog $changelog)
     {
         return [
             'id' => $changelog->id,

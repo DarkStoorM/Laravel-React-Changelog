@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('changes', function (Blueprint $table) {
+        Schema::create('changelogs', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['add', 'fix', 'delete', 'update']);
+            $table->enum('type', ['add', 'fix', 'delete', 'update'])->nullable(false);
             $table->string('body', 100);
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('changes');
+        Schema::dropIfExists('changelogs');
     }
 };
