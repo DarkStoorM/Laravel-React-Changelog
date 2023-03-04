@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangelogFormRequest;
-use App\Models\Change;
+use App\Models\Changelog;
 use Illuminate\Http\JsonResponse;
 
-class ChangeController extends Controller
+class ChangelogsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        return response()->json(Change::recent());
+        return response()->json(Changelog::recent());
     }
 
     /**
@@ -25,7 +25,7 @@ class ChangeController extends Controller
     {
         $payload = $request->validated();
 
-        Change::create($payload);
+        Changelog::create($payload);
 
         return json_response('New entry added.');
     }
@@ -39,7 +39,7 @@ class ChangeController extends Controller
      */
     public function destroy(string $id): JsonResponse
     {
-        Change::findOrFail($id)->delete();
+        Changelog::findOrFail($id)->delete();
 
         return json_response('Entry deleted successfully.');
     }
