@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use App\Models\Changelog;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -10,16 +10,14 @@ class DatabaseFeatureTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** Tests if the default model can be created during the SetUp */
-    public function testCanCreateUsersOnStart(): void
+    public function testCanCreateChangelogOnStart(): void
     {
-        $this->assertDatabaseHas('users', ['email' => $this->user->email]);
+        $this->assertDatabaseHas('changelogs', ['body' => $this->changelog->body]);
     }
 
-    /** Tests if a model can be created at any point in time by the Factory */
-    public function testCanCreateUsersAtRuntime(): void
+    public function testCanCreateChangelogAtRuntime(): void
     {
-        $user = User::factory()->create();
-        $this->assertDatabaseHas('users', ['email' => $user->email]);
+        $changelog = Changelog::factory()->create();
+        $this->assertDatabaseHas('changelogs', ['body' => $changelog->body]);
     }
 }
