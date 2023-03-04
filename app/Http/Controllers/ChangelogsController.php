@@ -43,4 +43,11 @@ class ChangelogsController extends Controller
 
         return json_response('Entry deleted successfully.');
     }
+
+    public function show(): never
+    {
+        // This endpoint is probably not needed anyway, maybe when the project is going to
+        // be updated some day, e.g. extended to display-by-section, add detailed descriptions, etc.
+        throw new \Exception('Not yet implemented :)');
+    }
 }
