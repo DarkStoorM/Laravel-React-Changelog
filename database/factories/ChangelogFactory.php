@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,9 @@ class ChangelogFactory extends Factory
     public function definition()
     {
         return [
-            'type' => 'add',
-            'body' => 'aaaaaaa',
+            'type' => collect(['add', 'delete', 'fix', 'update'])->random(),
+            'body' => $this->faker->realText(100),
+            'created_at' => Carbon::now()->addHours(mt_rand(-300, 10)),
         ];
     }
 }
