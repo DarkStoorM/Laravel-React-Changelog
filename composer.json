@@ -18,7 +18,7 @@
     "barryvdh/laravel-ide-helper": "^2.13",
     "fakerphp/faker": "^1.19",
     "filp/whoops": "^2.14",
-    "laravel/dusk": "^7.0",
+    "laravel/dusk": "^7.11",
     "laravel/sail": "^1.13",
     "laravel/tinker": "^2.7",
     "mockery/mockery": "^1.5",
