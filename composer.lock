@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "347ea479546279c5a602558d74e6a31c",
+    "content-hash": "31a855db6128db0738bc05db02dbff7e",
     "packages": [
         {
             "name": "brick/math",
@@ -6749,21 +6749,22 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v7.6.1",
+            "version": "v7.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "5db55e06a760543363311612c6b446fe06e888dd"
+                "reference": "ae5a90c43a22c05f278894370f14eb2058ff1470"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/5db55e06a760543363311612c6b446fe06e888dd",
-                "reference": "5db55e06a760543363311612c6b446fe06e888dd",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/ae5a90c43a22c05f278894370f14eb2058ff1470",
+                "reference": "ae5a90c43a22c05f278894370f14eb2058ff1470",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-zip": "*",
+                "guzzlehttp/guzzle": "^7.2",
                 "illuminate/console": "^9.0|^10.0",
                 "illuminate/support": "^9.0|^10.0",
                 "nesbot/carbon": "^2.0",
@@ -6777,7 +6778,9 @@
             "require-dev": {
                 "mockery/mockery": "^1.4.2",
                 "orchestra/testbench": "^7.0|^8.0",
-                "phpunit/phpunit": "^9.5.10|^10.0.1"
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.5.10|^10.0.1",
+                "psy/psysh": "^0.11.12"
             },
             "suggest": {
                 "ext-pcntl": "Used to gracefully terminate Dusk when tests are running."
@@ -6816,9 +6819,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/dusk/issues",
-                "source": "https://github.com/laravel/dusk/tree/v7.6.1"
+                "source": "https://github.com/laravel/dusk/tree/v7.11.2"
             },
-            "time": "2023-02-14T16:48:20+00:00"
+            "time": "2023-10-10T12:57:14+00:00"
         },
         {
             "name": "laravel/sail",
